@@ -1,4 +1,4 @@
-// SPDX-License-productIdentifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
 contract BlockBase {
@@ -19,7 +19,7 @@ contract BlockBase {
     }
     //===================MAPS
     mapping(uint256 => Property) private properties;
-    uint256 public propertyIndex;
+    uint256 public propertyIndex=0;
 
 
 
@@ -52,7 +52,7 @@ contract BlockBase {
         mapping (uint256 => Review[]) private reviews;
         mapping (address => uint256[]) private userReviews;
         mapping (uint256 => Product) private products;
-        uint256 public reviewsCounter;
+        uint256 public reviewsCounter=0;
 
         //==================EVENTS
         event ReviewAdded(uint256 indexed productproductId, address indexed reviewer, uint256 rating, string comment);
@@ -277,13 +277,14 @@ contract BlockBase {
 
 
             for(uint256 i = 0; i < reviewsCounter; i++){
-            uint256 productId = i + 1;
+                uint256 productId = i + 1;
 
 
                 if(products[productId].numReviews>0){
 
                     uint256 avgRating = products[productId].totalRating / products[productId].numReviews;
-                    if(avgRating >highestRating){
+
+                    if(avgRating > highestRating){
                         highestRating = avgRating;
                         highestRatedProductId = productId;
 
@@ -297,15 +298,6 @@ contract BlockBase {
 
             return highestRatedProductId;
         }
-
-
-
-
-
-
-
-
-
 
 
 
